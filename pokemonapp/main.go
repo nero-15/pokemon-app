@@ -43,5 +43,10 @@ func main() {
 		return c.Render(http.StatusOK, "index.html", map[string]interface{}{})
 	})
 
+	e.GET("/api/search", func(c echo.Context) error {
+		name := c.QueryParam("name")
+		return c.JSON(http.StatusOK, name)
+	})
+
 	e.Logger.Fatal(e.Start(":8080"))
 }
