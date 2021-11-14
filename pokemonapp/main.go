@@ -9,6 +9,8 @@ import (
 	"github.com/labstack/echo/v4/middleware"
 )
 
+const baseURL = "https://pokeapi.co/api/v2/"
+
 // TemplateRenderer is a custom html/template renderer for Echo framework
 type TemplateRenderer struct {
 	templates *template.Template
