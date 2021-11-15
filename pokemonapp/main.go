@@ -1,9 +1,10 @@
 package main
 
 import (
+	"fmt"
 	"html/template"
 	"io"
-	"log"
+	"io/ioutil"
 	"net/http"
 	"net/url"
 	"path"
@@ -52,20 +53,18 @@ func main() {
 		name := c.QueryParam("name")
 
 		url, _ := url.Parse(baseURL)
-		url.Path = path.Join(url.Path, "pokemon") // https://pokeapi.co/api/v2/pokemon/ になるように path を設定
-		queryParams := url.Query()
-		queryParams.Set("name", name)
-
-		url.RawQuery = queryParams.Encode()
-
-		resp, err := http.Get(url.String())
-		if err != nil {
-			log.Fatal(err)
-			return echo.NewHTTPError(http.StatusInternalServerError)
-		}
+		url.Path = path.Join(url.Path, "pokemon", name) // https://pokeapi.co/api/v2/pokemon/ になるように path を設定
+		fmt.Println(url.String())
+		resp, _ := http.Get(url.String())
+		// if err != nil {
+		// 	log.Fatal(err)
+		// 	return echo.NewHTTPError(http.StatusInternalServerError)
+		// }
 		defer resp.Body.Close()
+		body, _ := ioutil.ReadAll(resp.Body)
 
-		return c.JSON(http.StatusOK, resp)
+		return c.JSON(http.StatusOK, string(body))
+
 	})
 
 	e.Logger.Fatal(e.Start(":8080"))
