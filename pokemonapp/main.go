@@ -3,7 +3,10 @@ package main
 import (
 	"html/template"
 	"io"
+	"log"
 	"net/http"
+	"net/url"
+	"path"
 
 	echo "github.com/labstack/echo/v4"
 	"github.com/labstack/echo/v4/middleware"
@@ -47,7 +50,22 @@ func main() {
 
 	e.GET("/api/search", func(c echo.Context) error {
 		name := c.QueryParam("name")
-		return c.JSON(http.StatusOK, name)
+
+		url, _ := url.Parse(baseURL)
+		url.Path = path.Join(url.Path, "pokemon") // https://pokeapi.co/api/v2/pokemon/ になるように path を設定
+		queryParams := url.Query()
+		queryParams.Set("name", name)
+
+		url.RawQuery = queryParams.Encode()
+
+		resp, err := http.Get(url.String())
+		if err != nil {
+			log.Fatal(err)
+			return echo.NewHTTPError(http.StatusInternalServerError)
+		}
+		defer resp.Body.Close()
+
+		return c.JSON(http.StatusOK, resp)
 	})
 
 	e.Logger.Fatal(e.Start(":8080"))
