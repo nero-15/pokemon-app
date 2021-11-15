@@ -5,6 +5,7 @@ import (
 	"html/template"
 	"io"
 	"io/ioutil"
+	"log"
 	"net/http"
 	"net/url"
 	"path"
@@ -55,11 +56,11 @@ func main() {
 		url, _ := url.Parse(baseURL)
 		url.Path = path.Join(url.Path, "pokemon", name) // https://pokeapi.co/api/v2/pokemon/ になるように path を設定
 		fmt.Println(url.String())
-		resp, _ := http.Get(url.String())
-		// if err != nil {
-		// 	log.Fatal(err)
-		// 	return echo.NewHTTPError(http.StatusInternalServerError)
-		// }
+		resp, err := http.Get(url.String())
+		if err != nil {
+			log.Fatal(err)
+			return echo.NewHTTPError(http.StatusInternalServerError)
+		}
 		defer resp.Body.Close()
 		body, _ := ioutil.ReadAll(resp.Body)
 
