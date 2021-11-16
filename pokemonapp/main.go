@@ -9,9 +9,11 @@ import (
 	"net/http"
 	"net/url"
 	"path"
+	"reflect"
 
 	echo "github.com/labstack/echo/v4"
 	"github.com/labstack/echo/v4/middleware"
+	"github.com/mtslzr/pokeapi-go"
 )
 
 const baseURL = "https://pokeapi.co/api/v2/"
@@ -48,6 +50,13 @@ func main() {
 
 	e.GET("/", func(c echo.Context) error {
 		return c.Render(http.StatusOK, "index.html", map[string]interface{}{})
+	})
+
+	e.GET("/pokemon", func(c echo.Context) error {
+		l, _ := pokeapi.Pokemon("1")
+		fmt.Println(reflect.TypeOf(l))
+		fmt.Println(l.Name)
+		return c.JSON(http.StatusOK, l)
 	})
 
 	e.GET("/api/search", func(c echo.Context) error {
