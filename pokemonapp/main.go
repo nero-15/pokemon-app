@@ -9,6 +9,7 @@ import (
 	"net/http"
 	"net/url"
 	"path"
+	"reflect"
 
 	echo "github.com/labstack/echo/v4"
 	"github.com/labstack/echo/v4/middleware"
@@ -53,6 +54,8 @@ func main() {
 
 	e.GET("/pokemon", func(c echo.Context) error {
 		l, _ := pokeapi.Pokemon("1")
+		fmt.Println(reflect.TypeOf(l))
+		fmt.Println(l.Name)
 		return c.JSON(http.StatusOK, l)
 	})
 
