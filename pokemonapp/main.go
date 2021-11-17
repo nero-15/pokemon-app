@@ -62,6 +62,14 @@ func main() {
 		return c.JSON(http.StatusOK, pokemon)
 	})
 
+	e.GET("/type", func(c echo.Context) error {
+		pokemontype, err := pokeapi.Resource("type")
+		if err != nil {
+			return echo.NewHTTPError(http.StatusNotFound)
+		}
+		return c.JSON(http.StatusOK, pokemontype)
+	})
+
 	e.GET("/api/search", func(c echo.Context) error {
 		name := c.QueryParam("name")
 
