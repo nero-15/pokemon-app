@@ -52,8 +52,9 @@ func main() {
 		return c.Render(http.StatusOK, "index.html", map[string]interface{}{})
 	})
 
-	e.GET("/pokemon", func(c echo.Context) error {
-		l, _ := pokeapi.Pokemon("1")
+	e.GET("/pokemon/:id", func(c echo.Context) error {
+		id := c.Param("id")
+		l, _ := pokeapi.Pokemon(id)
 		fmt.Println(reflect.TypeOf(l))
 		fmt.Println(l.Name)
 		return c.JSON(http.StatusOK, l)
