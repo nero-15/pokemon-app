@@ -9,7 +9,6 @@ import (
 	"net/http"
 	"net/url"
 	"path"
-	"reflect"
 
 	echo "github.com/labstack/echo/v4"
 	"github.com/labstack/echo/v4/middleware"
@@ -52,11 +51,23 @@ func main() {
 		return c.Render(http.StatusOK, "index.html", map[string]interface{}{})
 	})
 
-	e.GET("/pokemon", func(c echo.Context) error {
-		l, _ := pokeapi.Pokemon("1")
-		fmt.Println(reflect.TypeOf(l))
-		fmt.Println(l.Name)
-		return c.JSON(http.StatusOK, l)
+	e.GET("/pokemon/:id", func(c echo.Context) error {
+		id := c.Param("id")
+		pokemon, err := pokeapi.Pokemon(id)
+		if err != nil {
+			return echo.NewHTTPError(http.StatusNotFound)
+		}
+		//fmt.Println(reflect.TypeOf(pokemon))
+		fmt.Println(pokemon.Name)
+		return c.JSON(http.StatusOK, pokemon)
+	})
+
+	e.GET("/type", func(c echo.Context) error {
+		pokemontype, err := pokeapi.Resource("type")
+		if err != nil {
+			return echo.NewHTTPError(http.StatusNotFound)
+		}
+		return c.JSON(http.StatusOK, pokemontype)
 	})
 
 	e.GET("/api/search", func(c echo.Context) error {
