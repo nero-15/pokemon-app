@@ -54,10 +54,13 @@ func main() {
 
 	e.GET("/pokemon/:id", func(c echo.Context) error {
 		id := c.Param("id")
-		l, _ := pokeapi.Pokemon(id)
-		fmt.Println(reflect.TypeOf(l))
-		fmt.Println(l.Name)
-		return c.JSON(http.StatusOK, l)
+		pokemon, err := pokeapi.Pokemon(id)
+		if err != nil {
+			return echo.NewHTTPError(http.StatusNotFound)
+		}
+		fmt.Println(reflect.TypeOf(pokemon))
+		fmt.Println(pokemon.Name)
+		return c.JSON(http.StatusOK, pokemon)
 	})
 
 	e.GET("/api/search", func(c echo.Context) error {
