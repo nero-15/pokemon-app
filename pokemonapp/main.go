@@ -9,7 +9,6 @@ import (
 	"net/http"
 	"net/url"
 	"path"
-	"reflect"
 
 	echo "github.com/labstack/echo/v4"
 	"github.com/labstack/echo/v4/middleware"
@@ -58,7 +57,7 @@ func main() {
 		if err != nil {
 			return echo.NewHTTPError(http.StatusNotFound)
 		}
-		fmt.Println(reflect.TypeOf(pokemon))
+		//fmt.Println(reflect.TypeOf(pokemon))
 		fmt.Println(pokemon.Name)
 		return c.JSON(http.StatusOK, pokemon)
 	})
