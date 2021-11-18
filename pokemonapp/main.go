@@ -57,11 +57,13 @@ func main() {
 		if err != nil {
 			return echo.NewHTTPError(http.StatusNotFound)
 		}
+		fmt.Println(pokemon.Name)
 		return c.JSON(http.StatusOK, pokemon)
 	})
 
 	e.GET("/type/:id", func(c echo.Context) error {
-		pokemontype, err := pokeapi.Type("id")
+		id := c.Param("id")
+		pokemontype, err := pokeapi.Type(id)
 		if err != nil {
 			return echo.NewHTTPError(http.StatusNotFound)
 		}
