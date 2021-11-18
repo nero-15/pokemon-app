@@ -57,8 +57,6 @@ func main() {
 		if err != nil {
 			return echo.NewHTTPError(http.StatusNotFound)
 		}
-		//fmt.Println(reflect.TypeOf(pokemon))
-		fmt.Println(pokemon.Name)
 		return c.JSON(http.StatusOK, pokemon)
 	})
 
