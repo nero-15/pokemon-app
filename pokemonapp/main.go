@@ -62,8 +62,8 @@ func main() {
 		return c.JSON(http.StatusOK, pokemon)
 	})
 
-	e.GET("/type", func(c echo.Context) error {
-		pokemontype, err := pokeapi.Resource("type")
+	e.GET("/type/:id", func(c echo.Context) error {
+		pokemontype, err := pokeapi.Type("id")
 		if err != nil {
 			return echo.NewHTTPError(http.StatusNotFound)
 		}
