@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"html/template"
 	"io"
 	"net/http"
@@ -53,7 +52,6 @@ func main() {
 		if err != nil {
 			return echo.NewHTTPError(http.StatusNotFound)
 		}
-		fmt.Println(pokemon.Name)
 		return c.JSON(http.StatusOK, pokemon)
 	})
 
