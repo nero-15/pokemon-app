@@ -54,9 +54,9 @@
 					<p class="lead text-muted">please enter the keyword you want to search</p>
 					<form>
 						<div class="mb-3">
-							<input type="text" class="nes-input" placeholder="">
+							<input type="text" class="nes-input" placeholder="" v-model="name">
 						</div>
-						<button type="button" class="nes-btn is-primary">search!</button>
+						<button type="button" class="nes-btn is-primary" @click="search">search!</button>
 					</form>
 				</div>
 			</div>
@@ -77,8 +77,13 @@
 var app = new Vue({
 	el: '#app',
 	data: {
+		name: '',
+
 	},
 	methods: {
+		search: function () {
+			console.log(this.name);
+		}
 	}
 })
 </script>
