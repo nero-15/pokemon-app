@@ -31,8 +31,11 @@
 			}
 		}
 	</style>
+
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 </head>
 <body>
+<div id='app'>
 	<header>
 		<div class="navbar navbar-dark bg-dark shadow-sm">
 			<div class="container">
@@ -67,5 +70,15 @@
 			</p>
 		</div>
 	</footer>
+</div>
+<script>
+var app = new Vue({
+	el: '#app',
+	data: {
+	},
+	methods: {
+	}
+})
+</script>
 </body>
 </html>
