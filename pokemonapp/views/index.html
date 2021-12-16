@@ -31,8 +31,11 @@
 			}
 		}
 	</style>
+
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 </head>
 <body>
+<div id='app'>
 	<header>
 		<div class="navbar navbar-dark bg-dark shadow-sm">
 			<div class="container">
@@ -47,13 +50,13 @@
 		<section class="py-5 text-center container">
 			<div class="row py-lg-5">
 				<div class="col-lg-6 col-md-8 mx-auto">
-					<h1 class="fw-light">検索</h1>
-					<p class="lead text-muted">検索したいキーワードを入力してください</p>
-					<form action="/api/search" method="GET">
+					<h1 class="fw-light">search</h1>
+					<p class="lead text-muted">please enter the keyword you want to search</p>
+					<form>
 						<div class="mb-3">
-							<input type="text" name="name" class="form-control" placeholder="ピカチュウ">
+							<input type="text" class="nes-input" placeholder="" v-model="name">
 						</div>
-						<button type="submit" class="btn btn-primary">検索</button>
+						<button type="button" class="nes-btn is-primary" @click="search">search!</button>
 					</form>
 				</div>
 			</div>
@@ -67,5 +70,21 @@
 			</p>
 		</div>
 	</footer>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/axios@0.21.1/dist/axios.min.js"></script>
+<script>
+var app = new Vue({
+	el: '#app',
+	data: {
+		name: '',
+	},
+	methods: {
+		search: function () {
+			console.log(this.name);
+		}
+	}
+})
+</script>
 </body>
 </html>
