@@ -81,7 +81,18 @@ var app = new Vue({
 	},
 	methods: {
 		search: function () {
-			console.log(this.name);
+			axios.get('/api/search', {
+				params: {
+					name: app.name,
+				}
+			})
+			.then(function (response) {
+				console.log(response);
+			})
+			.catch(function (error) {
+			})
+			.then(function(){
+			});
 		}
 	}
 })
