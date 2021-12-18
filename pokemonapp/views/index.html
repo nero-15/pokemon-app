@@ -64,12 +64,14 @@
 						<tbody>
 							<tr>
 								<td>No</td>
-								<td colspan="2">{{ pokemon.id }}</td>
+								<td colspan="4">{{ pokemon.id }}</td>
 							</tr>
 							<tr>
 								<td>image</td>
-								<td><img :src="pokemon.image_default"></td>
+								<td><img :src="pokemon.image_front_default"></td>
 								<td><img :src="pokemon.image_back_default"></td>
+								<td><img :src="pokemon.image_front_shiny"></td>
+								<td><img :src="pokemon.image_back_shiny"></td>
 							</tr>
 						</tbody>
 					</table>
@@ -109,9 +111,10 @@ var app = new Vue({
 				console.log(response);
 				app.pokemon = {
 					id: response.data.id,
-					image_default: response.data.sprites.front_default,
+					image_front_default: response.data.sprites.front_default,
 					image_back_default: response.data.sprites.back_default,
-					
+					image_front_shiny: response.data.sprites.front_shiny,
+					image_back_shiny: response.data.sprites.back_shiny,
 				};
 			})
 			.catch(function (error) {
