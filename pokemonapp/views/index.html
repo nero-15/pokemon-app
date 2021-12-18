@@ -8,7 +8,7 @@
 
 	<!-- nes.css -->
 	<link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
-	<link href="https://unpkg.com/nes.css@latest/css/nes.min.css" rel="stylesheet" />
+	<link href="https://unpkg.com/nes.css@latest/css/nes.min.css" rel="stylesheet">
 
 	<style>
 	html, body, pre, code, kbd, samp {
@@ -59,6 +59,23 @@
 						<button type="button" class="nes-btn is-primary" @click="search">search!</button>
 					</form>
 				</div>
+				<div class="nes-table-responsive mt-5" v-if="pokemon.id">
+					<table class="nes-table is-bordered is-centered">
+						<tbody>
+							<tr>
+								<td>No</td>
+								<td colspan="4">{{ pokemon.id }}</td>
+							</tr>
+							<tr>
+								<td>image</td>
+								<td><img :src="pokemon.image_front_default"></td>
+								<td><img :src="pokemon.image_back_default"></td>
+								<td><img :src="pokemon.image_front_shiny"></td>
+								<td><img :src="pokemon.image_back_shiny"></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
 			</div>
 		</section>
 	</main>
@@ -78,9 +95,13 @@ var app = new Vue({
 	el: '#app',
 	data: {
 		name: '',
+		pokemon: {
+			id: '',
+		},
 	},
 	methods: {
 		search: function () {
+			if (this.validateNotEmptyName()) {alert("検索キーワードを入力してください"); return;}
 			axios.get('/api/search', {
 				params: {
 					name: app.name,
@@ -88,12 +109,21 @@ var app = new Vue({
 			})
 			.then(function (response) {
 				console.log(response);
+				app.pokemon = {
+					id: response.data.id,
+					image_front_default: response.data.sprites.front_default,
+					image_back_default: response.data.sprites.back_default,
+					image_front_shiny: response.data.sprites.front_shiny,
+					image_back_shiny: response.data.sprites.back_shiny,
+				};
 			})
 			.catch(function (error) {
-			})
-			.then(function(){
+				alert("検索できませんでした");
 			});
-		}
+		},
+		validateNotEmptyName: function () {
+			return this.name.length <= 0
+		},
 	}
 })
 </script>
