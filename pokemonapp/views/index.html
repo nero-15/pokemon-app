@@ -77,6 +77,11 @@
 								<td><img :src="pokemon.image_front_shiny"></td>
 								<td><img :src="pokemon.image_back_shiny"></td>
 							</tr>
+							<tr>
+								<td>type</td>
+								<td colspan="2">{{ pokemon.type_1 }}</td>
+								<td colspan="2">{{ pokemon.type_2 }}</td>
+							</tr>
 						</tbody>
 					</table>
 				</div>
@@ -120,6 +125,8 @@ var app = new Vue({
 					image_back_default: response.data.sprites.back_default,
 					image_front_shiny: response.data.sprites.front_shiny,
 					image_back_shiny: response.data.sprites.back_shiny,
+					type_1: response.data.types[0].type.name,
+					type_2: response.data.types.length > 1 ? response.data.types[1].type.name : '',
 				};
 			})
 			.catch(function (error) {
