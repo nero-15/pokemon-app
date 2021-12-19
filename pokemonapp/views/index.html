@@ -82,6 +82,14 @@
 								<td colspan="2">{{ pokemon.type_1 }}</td>
 								<td colspan="2">{{ pokemon.type_2 }}</td>
 							</tr>
+							<tr>
+								<td>height</td>
+								<td colspan="4">{{ pokemon.height }}m</td>
+							</tr>
+							<tr>
+								<td>weight</td>
+								<td colspan="4">{{ pokemon.weight }}kg</td>
+							</tr>
 						</tbody>
 					</table>
 				</div>
@@ -127,6 +135,8 @@ var app = new Vue({
 					image_back_shiny: response.data.sprites.back_shiny,
 					type_1: response.data.types[0].type.name,
 					type_2: response.data.types.length > 1 ? response.data.types[1].type.name : '',
+					height: response.data.height / 10,
+					weight: response.data.weight / 10,
 				};
 			})
 			.catch(function (error) {
