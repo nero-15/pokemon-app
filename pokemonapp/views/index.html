@@ -54,27 +54,72 @@
 					<p class="lead text-muted">please enter the keyword you want to search</p>
 					<form>
 						<div class="mb-3">
-							<input type="text" class="nes-input" placeholder="" v-model="name">
+							<input type="text" class="nes-input" placeholder="number or name" v-model="name">
 						</div>
 						<button type="button" class="nes-btn is-primary" @click="search">search!</button>
 					</form>
 				</div>
-				<div class="nes-table-responsive mt-5" v-if="pokemon.id">
-					<table class="nes-table is-bordered is-centered">
-						<tbody>
-							<tr>
-								<td>No</td>
-								<td colspan="4">{{ pokemon.id }}</td>
-							</tr>
-							<tr>
-								<td>image</td>
-								<td><img :src="pokemon.image_front_default"></td>
-								<td><img :src="pokemon.image_back_default"></td>
-								<td><img :src="pokemon.image_front_shiny"></td>
-								<td><img :src="pokemon.image_back_shiny"></td>
-							</tr>
-						</tbody>
-					</table>
+			</div>
+			<div class="row" v-if="pokemon.id">
+				<div class="col-lg-7 col-md-7 mx-auto">
+					<div class="nes-table-responsive">
+						<table class="nes-table is-bordered is-centered">
+							<tbody>
+								<tr>
+									<td>No</td>
+									<td colspan="4">{{ pokemon.id }}</td>
+								</tr>
+								<tr>
+									<td>name</td>
+									<td colspan="4">{{ pokemon.name }}</td>
+								</tr>
+								<tr>
+									<td>image</td>
+									<td><img :src="pokemon.image_front_default"></td>
+									<td><img :src="pokemon.image_back_default"></td>
+									<td><img :src="pokemon.image_front_shiny"></td>
+									<td><img :src="pokemon.image_back_shiny"></td>
+								</tr>
+								<tr>
+									<td>type</td>
+									<td colspan="2">{{ pokemon.type_1 }}</td>
+									<td colspan="2">{{ pokemon.type_2 }}</td>
+								</tr>
+								<tr>
+									<td>height</td>
+									<td colspan="4">{{ pokemon.height }}m</td>
+								</tr>
+								<tr>
+									<td>weight</td>
+									<td colspan="4">{{ pokemon.weight }}kg</td>
+								</tr>
+								<tr>
+									<td>HP</td>
+									<td colspan="4">{{ pokemon.HP }}</td>
+								</tr>
+								<tr>
+									<td>A(attack)</td>
+									<td colspan="4">{{ pokemon.A }}</td>
+								</tr>
+								<tr>
+									<td>B(defense)</td>
+									<td colspan="4">{{ pokemon.B }}</td>
+								</tr>
+								<tr>
+									<td>C(special-attack)</td>
+									<td colspan="4">{{ pokemon.C }}</td>
+								</tr>
+								<tr>
+									<td>D(special-defense)</td>
+									<td colspan="4">{{ pokemon.D }}</td>
+								</tr>
+								<tr>
+									<td>S(speed)</td>
+									<td colspan="4">{{ pokemon.S }}</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
 				</div>
 			</div>
 		</section>
@@ -111,10 +156,21 @@ var app = new Vue({
 				console.log(response);
 				app.pokemon = {
 					id: response.data.id,
+					name: response.data.name,
 					image_front_default: response.data.sprites.front_default,
 					image_back_default: response.data.sprites.back_default,
 					image_front_shiny: response.data.sprites.front_shiny,
 					image_back_shiny: response.data.sprites.back_shiny,
+					type_1: response.data.types[0].type.name,
+					type_2: response.data.types.length > 1 ? response.data.types[1].type.name : '',
+					height: response.data.height / 10,
+					weight: response.data.weight / 10,
+					HP: response.data.stats[0].base_stat,
+					A: response.data.stats[1].base_stat,
+					B: response.data.stats[2].base_stat,
+					C: response.data.stats[3].base_stat,
+					D: response.data.stats[4].base_stat,
+					S: response.data.stats[5].base_stat,
 				};
 			})
 			.catch(function (error) {
