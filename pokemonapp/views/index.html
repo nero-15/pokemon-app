@@ -59,63 +59,67 @@
 						<button type="button" class="nes-btn is-primary" @click="search">search!</button>
 					</form>
 				</div>
-				<div class="nes-table-responsive mt-5" v-if="pokemon.id">
-					<table class="nes-table is-bordered is-centered">
-						<tbody>
-							<tr>
-								<td>No</td>
-								<td colspan="4">{{ pokemon.id }}</td>
-							</tr>
-							<tr>
-								<td>name</td>
-								<td colspan="4">{{ pokemon.name }}</td>
-							</tr>
-							<tr>
-								<td>image</td>
-								<td><img :src="pokemon.image_front_default"></td>
-								<td><img :src="pokemon.image_back_default"></td>
-								<td><img :src="pokemon.image_front_shiny"></td>
-								<td><img :src="pokemon.image_back_shiny"></td>
-							</tr>
-							<tr>
-								<td>type</td>
-								<td colspan="2">{{ pokemon.type_1 }}</td>
-								<td colspan="2">{{ pokemon.type_2 }}</td>
-							</tr>
-							<tr>
-								<td>height</td>
-								<td colspan="4">{{ pokemon.height }}m</td>
-							</tr>
-							<tr>
-								<td>weight</td>
-								<td colspan="4">{{ pokemon.weight }}kg</td>
-							</tr>
-							<tr>
-								<td>HP</td>
-								<td colspan="4">{{ pokemon.HP }}</td>
-							</tr>
-							<tr>
-								<td>A(attack)</td>
-								<td colspan="4">{{ pokemon.A }}</td>
-							</tr>
-							<tr>
-								<td>B(defense)</td>
-								<td colspan="4">{{ pokemon.B }}</td>
-							</tr>
-							<tr>
-								<td>C(special-attack)</td>
-								<td colspan="4">{{ pokemon.C }}</td>
-							</tr>
-							<tr>
-								<td>D(special-defense)</td>
-								<td colspan="4">{{ pokemon.D }}</td>
-							</tr>
-							<tr>
-								<td>S(speed)</td>
-								<td colspan="4">{{ pokemon.S }}</td>
-							</tr>
-						</tbody>
-					</table>
+			</div>
+			<div class="row">
+				<div class="col-lg-7 col-md-7 mx-auto">
+					<div class="nes-table-responsive" v-if="pokemon.id">
+						<table class="nes-table is-bordered is-centered">
+							<tbody>
+								<tr>
+									<td>No</td>
+									<td colspan="4">{{ pokemon.id }}</td>
+								</tr>
+								<tr>
+									<td>name</td>
+									<td colspan="4">{{ pokemon.name }}</td>
+								</tr>
+								<tr>
+									<td>image</td>
+									<td><img :src="pokemon.image_front_default"></td>
+									<td><img :src="pokemon.image_back_default"></td>
+									<td><img :src="pokemon.image_front_shiny"></td>
+									<td><img :src="pokemon.image_back_shiny"></td>
+								</tr>
+								<tr>
+									<td>type</td>
+									<td colspan="2">{{ pokemon.type_1 }}</td>
+									<td colspan="2">{{ pokemon.type_2 }}</td>
+								</tr>
+								<tr>
+									<td>height</td>
+									<td colspan="4">{{ pokemon.height }}m</td>
+								</tr>
+								<tr>
+									<td>weight</td>
+									<td colspan="4">{{ pokemon.weight }}kg</td>
+								</tr>
+								<tr>
+									<td>HP</td>
+									<td colspan="4">{{ pokemon.HP }}</td>
+								</tr>
+								<tr>
+									<td>A(attack)</td>
+									<td colspan="4">{{ pokemon.A }}</td>
+								</tr>
+								<tr>
+									<td>B(defense)</td>
+									<td colspan="4">{{ pokemon.B }}</td>
+								</tr>
+								<tr>
+									<td>C(special-attack)</td>
+									<td colspan="4">{{ pokemon.C }}</td>
+								</tr>
+								<tr>
+									<td>D(special-defense)</td>
+									<td colspan="4">{{ pokemon.D }}</td>
+								</tr>
+								<tr>
+									<td>S(speed)</td>
+									<td colspan="4">{{ pokemon.S }}</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
 				</div>
 			</div>
 		</section>
