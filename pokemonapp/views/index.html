@@ -161,12 +161,12 @@ var app = new Vue({
 					type_2: response.data.types.length > 1 ? response.data.types[1].type.name : '',
 					height: response.data.height / 10,
 					weight: response.data.weight / 10,
-					HP: 0,
-					A: 0,
-					B: 0,
-					C: 0,
-					D: 0,
-					S: 0,
+					HP: response.data.stats[0].base_stat,
+					A: response.data.stats[1].base_stat,
+					B: response.data.stats[2].base_stat,
+					C: response.data.stats[3].base_stat,
+					D: response.data.stats[4].base_stat,
+					S: response.data.stats[5].base_stat,
 				};
 			})
 			.catch(function (error) {
