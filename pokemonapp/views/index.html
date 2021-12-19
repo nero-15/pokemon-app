@@ -90,6 +90,30 @@
 								<td>weight</td>
 								<td colspan="4">{{ pokemon.weight }}kg</td>
 							</tr>
+							<tr>
+								<td>HP</td>
+								<td colspan="4">{{ pokemon.HP }}</td>
+							</tr>
+							<tr>
+								<td>A</td>
+								<td colspan="4">{{ pokemon.A }}</td>
+							</tr>
+							<tr>
+								<td>B</td>
+								<td colspan="4">{{ pokemon.B }}</td>
+							</tr>
+							<tr>
+								<td>C</td>
+								<td colspan="4">{{ pokemon.C }}</td>
+							</tr>
+							<tr>
+								<td>D</td>
+								<td colspan="4">{{ pokemon.D }}</td>
+							</tr>
+							<tr>
+								<td>S</td>
+								<td colspan="4">{{ pokemon.S }}</td>
+							</tr>
 						</tbody>
 					</table>
 				</div>
@@ -137,6 +161,12 @@ var app = new Vue({
 					type_2: response.data.types.length > 1 ? response.data.types[1].type.name : '',
 					height: response.data.height / 10,
 					weight: response.data.weight / 10,
+					HP: 0,
+					A: 0,
+					B: 0,
+					C: 0,
+					D: 0,
+					S: 0,
 				};
 			})
 			.catch(function (error) {
