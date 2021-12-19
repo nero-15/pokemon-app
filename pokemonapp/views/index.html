@@ -67,6 +67,10 @@
 								<td colspan="4">{{ pokemon.id }}</td>
 							</tr>
 							<tr>
+								<td>name</td>
+								<td colspan="4">{{ pokemon.name }}</td>
+							</tr>
+							<tr>
 								<td>image</td>
 								<td><img :src="pokemon.image_front_default"></td>
 								<td><img :src="pokemon.image_back_default"></td>
@@ -111,6 +115,7 @@ var app = new Vue({
 				console.log(response);
 				app.pokemon = {
 					id: response.data.id,
+					name: response.data.name,
 					image_front_default: response.data.sprites.front_default,
 					image_back_default: response.data.sprites.back_default,
 					image_front_shiny: response.data.sprites.front_shiny,
