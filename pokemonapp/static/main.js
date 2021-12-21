@@ -1,4 +1,4 @@
-import Vue from 'vue'
+import Vue from '../node_modules/vue/dist/vue'
 console.log('aaa');
 
 var app = new Vue({
